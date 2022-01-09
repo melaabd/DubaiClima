@@ -29,11 +29,11 @@ struct Weather: Codable {
 
 // MARK: - City
 struct City: Codable {
-    var id: Int
-    var name: String
-    var coord: Coord
-    var country: String
-    var population, timezone, sunrise, sunset: Int
+    var id: Int?
+    var name: String?
+    var coord: Coord?
+    var country: String?
+    var population, timezone, sunrise, sunset: Int?
 }
 
 // MARK: - Coord
@@ -55,6 +55,14 @@ struct Forecast: Codable {
         return dtTxt.getDateStringWithTimeFormat()
     }
     
+    var timeString:String? {
+        return dtTxt.getTimeStringForDate()
+    }
+    
+    var dayString:String? {
+        return dateString?.getTodayWeekDay()
+    }
+    
     enum CodingKeys: String, CodingKey {
         case dt, main, weather, clouds, wind, visibility, pop, sys
         case dtTxt = "dt_txt"
@@ -63,15 +71,15 @@ struct Forecast: Codable {
 
 // MARK: - Clouds
 struct Clouds: Codable {
-    var all: Int
+    var all: Int?
 }
 
 // MARK: - MainClass
 struct MainClass: Codable {
-    var temp, feelsLike, tempMin, tempMax: Double
-    var pressure, seaLevel, grndLevel, humidity: Int
-    var tempKf: Double
-    
+    var temp, feelsLike, tempMin, tempMax: Double?
+    var pressure, seaLevel, grndLevel, humidity: Int?
+    var tempKf: Double?
+
     enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"
@@ -87,7 +95,7 @@ struct MainClass: Codable {
 
 // MARK: - Sys
 struct Sys: Codable {
-    var pod: Pod
+    var pod: Pod?
 }
 
 enum Pod: String, Codable {
@@ -97,16 +105,24 @@ enum Pod: String, Codable {
 
 // MARK: - WeatherElement
 struct WeatherElement: Codable {
-    var id: Int
-    var main: MainEnum
-    var weatherDescription: Description
-    var icon: String
-    
+    var id: Int?
+    var main: MainEnum?
+    var weatherDescription: Description?
+    var icon: Icon?
+
     enum CodingKeys: String, CodingKey {
         case id, main
         case weatherDescription = "description"
         case icon
     }
+}
+
+enum Icon: String, Codable {
+    case the01D = "01d"
+    case the01N = "01n"
+    case the02N = "02n"
+    case the03N = "03n"
+    case the04N = "04n"
 }
 
 enum MainEnum: String, Codable {
@@ -118,12 +134,13 @@ enum Description: String, Codable {
     case brokenClouds = "broken clouds"
     case clearSky = "clear sky"
     case fewClouds = "few clouds"
+    case overcastClouds = "overcast clouds"
     case scatteredClouds = "scattered clouds"
 }
 
 // MARK: - Wind
 struct Wind: Codable {
-    var speed: Double
-    var deg: Int
-    var gust: Double
+    var speed: Double?
+    var deg: Int?
+    var gust: Double?
 }

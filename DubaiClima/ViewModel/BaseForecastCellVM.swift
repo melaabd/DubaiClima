@@ -12,11 +12,11 @@ class BaseForecastCellVM {
     
     var dtTxt:String?
     var weather:WeatherElement?
-    var temp:String?
+    var temp:Double?
     
     init(forecast:Forecast) {
         weather = forecast.weather.first
-        temp = forecast.main.temp.format(f: "0.2")
+        temp = forecast.main.temp
         dtTxt = forecast.dtTxt
     }
 }

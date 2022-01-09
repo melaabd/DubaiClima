@@ -29,10 +29,11 @@ class DetailsTVCell: UITableViewCell {
         onMain { [weak self] in
             guard let self = self, let vm = self.detailsVM else { return }
             self.cityNameLbl.text = vm.cityName
-            self.currentTempLbl.text = vm.temp
-            self.weatherCondLbl.text = vm.weather?.weatherDescription.rawValue
-            self.maxTempLbl.text = "H:\(vm.maxTemp ?? "")"
-            self.minTempLbl.text = "L:\(vm.minTemp ?? "")"
+            self.currentTempLbl.text = Keeper.temperatureUnit == .fahrenheit ?  vm.temp?.format() : vm.temp?.celciusFormat()
+            
+            self.weatherCondLbl.text = vm.weather?.weatherDescription?.rawValue
+            self.maxTempLbl.text = "H:\(Keeper.temperatureUnit == .fahrenheit ? (vm.maxTemp?.format() ?? "") : (vm.temp?.celciusFormat() ?? ""))"
+            self.minTempLbl.text = "L:\(Keeper.temperatureUnit == .fahrenheit ? (vm.minTemp?.format() ?? "") : (vm.minTemp?.celciusFormat() ?? ""))"
         }
         
     }

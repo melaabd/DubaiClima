@@ -10,6 +10,7 @@ import UIKit
 class WForecastVC: UIViewController {
     
     @IBOutlet weak var forecastTableView: UITableView!
+    @IBOutlet weak var unitSwitch: UISegmentedControl!
     
     var forecastVM: WForecastVM?
     
@@ -52,6 +53,26 @@ class WForecastVC: UIViewController {
             }
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        unitSwitch.setTitle("°C", forSegmentAt: 0)
+        unitSwitch.setTitle("℉", forSegmentAt: 1)
+        unitSwitch.selectedSegmentIndex = Keeper.temperatureUnit == .celsius ? 0 : 1
+    }
+    
+    @IBAction func switchUnitAction(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            Keeper.saveUnit(value: .celsius)
+        default:
+            Keeper.saveUnit(value: .fahrenheit)
+        }
+        reloadData()
+    }
+    
 }
 
 // MARK: - conform with forecastTableView protocols
@@ -96,15 +117,19 @@ extension WForecastVC: UITableViewDataSource, UITableViewDelegate {
 extension WForecastVC: BindingVVMDelegate {
     func reloadData() {
         onMain { [weak self] in
-            self?.forecastTableView.reloadData()
+            guard let self = self else { return }
+            UIView.transition(with: self.forecastTableView,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: { self.forecastTableView.reloadData() })
         }
     }
     
     func notifyFailure(msg: String) {
-        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel)
-        alert.addAction(dismissAction)
         onMain { [weak self] in
+            let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel)
+            alert.addAction(dismissAction)
             self?.present(alert, animated: true)
         }
     }

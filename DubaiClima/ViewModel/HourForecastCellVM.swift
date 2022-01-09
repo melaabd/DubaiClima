@@ -11,12 +11,11 @@ import Foundation
 class HourForecastCellVM: BaseForecastCellVM {
    
     
-    var timeString:String? {
-        dtTxt?.getTimeStringForDate()
-    }
+    var timeString:String?
     
     required override init(forecast: Forecast) {
         super.init(forecast: forecast)
         
+        timeString = forecast.timeString
     }
 }

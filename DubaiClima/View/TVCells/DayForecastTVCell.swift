@@ -29,8 +29,12 @@ class DayForecastTVCell: UITableViewCell {
     
     private func updateCellInfo() {
         onMain { [weak self] in
-            self?.dayLbl.text = self?.dayForecastVM?.day
-            self?.hourForecastCollectionView.reloadData()
+            guard let self = self else { return }
+            self.dayLbl.text = self.dayForecastVM?.day
+            UIView.transition(with: self.hourForecastCollectionView,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: { self.hourForecastCollectionView.reloadData() })
         }
     }
     

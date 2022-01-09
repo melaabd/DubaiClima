@@ -281,9 +281,24 @@
                             <constraint firstItem="52S-HI-WSq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wKG-oa-sum"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bYv-9x-621"/>
+                    <navigationItem key="navigationItem" id="bYv-9x-621">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="fXC-Ef-iu5">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jNr-ev-4JR">
+                                <rect key="frame" x="20" y="6" width="131" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchUnitAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="CZf-eJ-9lz"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="forecastTableView" destination="y9h-KA-QXP" id="DkT-jt-P89"/>
+                        <outlet property="unitSwitch" destination="jNr-ev-4JR" id="6tS-Bl-HBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

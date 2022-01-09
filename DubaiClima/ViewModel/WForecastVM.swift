@@ -42,9 +42,9 @@ class WForecastVM {
         detailsCellVM = DetailsCellVM(city: weather.city, forecast: weather.list.first!)
         daysForeCastCellsVM =  (weather.list.compactMap { $0.dateString }.removingDuplicates())
             .map { (date) -> DayForecastCellVM in
-            let forecasts = weather.list.filter { $0.dateString == date }
-            return DayForecastCellVM(day: date, forecasts: forecasts)
-        }
+                let forecasts = weather.list.filter { $0.dateString == date }
+                return DayForecastCellVM(forecasts: forecasts)
+            }
         
         bindingDelegate?.reloadData()
     }

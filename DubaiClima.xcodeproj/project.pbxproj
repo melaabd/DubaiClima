@@ -25,6 +25,7 @@
 		0F32771B278AFE5B006F636A /* DayForecastCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F32771A278AFE5B006F636A /* DayForecastCellVM.swift */; };
 		0F32771D278B03CE006F636A /* HourForecastCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F32771C278B03CE006F636A /* HourForecastCellVM.swift */; };
 		0F32771F278B046B006F636A /* BaseForecastCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F32771E278B046B006F636A /* BaseForecastCellVM.swift */; };
+		0F327721278B4DC3006F636A /* Keeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F327720278B4DC3006F636A /* Keeper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		0F32771A278AFE5B006F636A /* DayForecastCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForecastCellVM.swift; sourceTree = "<group>"; };
 		0F32771C278B03CE006F636A /* HourForecastCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourForecastCellVM.swift; sourceTree = "<group>"; };
 		0F32771E278B046B006F636A /* BaseForecastCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseForecastCellVM.swift; sourceTree = "<group>"; };
+		0F327720278B4DC3006F636A /* Keeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keeper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				0F3276FB278ABD4A006F636A /* Utils.swift */,
+				0F327720278B4DC3006F636A /* Keeper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				0F327709278AC0B8006F636A /* EndPoint.swift in Sources */,
 				0F32770E278AC0C9006F636A /* DayForecastTVCell.swift in Sources */,
 				0F327708278AC0B5006F636A /* URLSessionExtension.swift in Sources */,
+				0F327721278B4DC3006F636A /* Keeper.swift in Sources */,
 				0F32771F278B046B006F636A /* BaseForecastCellVM.swift in Sources */,
 				0F32771D278B03CE006F636A /* HourForecastCellVM.swift in Sources */,
 				0F32771B278AFE5B006F636A /* DayForecastCellVM.swift in Sources */,

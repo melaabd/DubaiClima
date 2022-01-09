@@ -12,8 +12,8 @@ class DayForecastCellVM {
     var day:String?
     var hoursForecastVM:[HourForecastCellVM]?
     
-    required init(day:String, forecasts:[Forecast]) {
-        self.day = day
+    required init(forecasts:[Forecast]) {
+        self.day = forecasts.first?.dayString
         hoursForecastVM = forecasts.map{HourForecastCellVM(forecast: $0)}
     }
 }

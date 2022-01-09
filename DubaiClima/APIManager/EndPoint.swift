@@ -20,7 +20,7 @@ enum EndPoint {
     }
     
     var url:URL {
-        guard let url = URL(string: "\(EndPoint.baseUrl)\(path)&appid=\(Keys.apiKey)") else {fatalError("Invalid Base URL.")}
+        guard let url = URL(string: "\(EndPoint.baseUrl)\(path)&appid=\(Keys.apiKey)&units=imperial") else {fatalError("Invalid Base URL.")}
         return url
     }
 }
@@ -28,5 +28,5 @@ enum EndPoint {
 /// Holds constants for Notification names
 enum Keys {
     static let apiKey = "4e0109204b0b9f3037d925525549cff4"
-    static let kCFLocaleTemperatureUnitKey = "kCFLocaleTemperatureUnitKey"
+    static let temperatureUnitKey = "temperatureUnitKey"
 }
