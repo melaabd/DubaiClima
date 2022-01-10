@@ -16,7 +16,7 @@ class BaseForecastCellVM {
     
     init(forecast:Forecast) {
         weather = forecast.weather.first
-        temp = forecast.main.temp
+        temp = forecast.main?.temp
         dtTxt = forecast.dtTxt
     }
 }

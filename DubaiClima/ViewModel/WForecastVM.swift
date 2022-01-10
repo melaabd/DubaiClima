@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// Binding delegate to connect between VC and VM
 protocol BindingVVMDelegate: AnyObject {
@@ -23,7 +24,16 @@ class WForecastVM {
     var detailsCellVM:DetailsCellVM?
     
     func loadWeatherData() {
-        showProgress?()
+        if let cityWeather = DBManager.shared.fetchData() {
+            prepareWeatherData(cityWeather)
+            loadRemoteWeatherData(false)
+        } else {
+            loadRemoteWeatherData()
+        }
+    }
+    
+    private func loadRemoteWeatherData(_ shouldShowProgress:Bool = true) {
+        shouldShowProgress ? showProgress?() : nil
         Weather.getWeather() { [weak self] weather, errorMsg in
             self?.hideProgress?()
             guard errorMsg == nil else {
@@ -35,6 +45,9 @@ class WForecastVM {
                 return
             }
             self?.prepareWeatherData(cityWeather)
+            onMain {
+                DBManager.shared.replaceData(weather: cityWeather)
+            }
         }
     }
     
@@ -43,7 +56,7 @@ class WForecastVM {
         daysForeCastCellsVM =  (weather.list.compactMap { $0.dateString }.removingDuplicates())
             .map { (date) -> DayForecastCellVM in
                 let forecasts = weather.list.filter { $0.dateString == date }
-                return DayForecastCellVM(forecasts: forecasts)
+                return DayForecastCellVM(forecasts: Array(forecasts))
             }
         
         bindingDelegate?.reloadData()

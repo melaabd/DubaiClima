@@ -13,12 +13,12 @@ class DetailsCellVM: BaseForecastCellVM {
     var minTemp:Double?
     var maxTemp:Double?
     
-    required init(city:City, forecast:Forecast) {
+    required init(city:City?, forecast:Forecast) {
         super.init(forecast: forecast)
         
-        cityName = city.name
-        minTemp = forecast.main.tempMin
-        maxTemp = forecast.main.tempMax
+        cityName = city?.name
+        minTemp = forecast.main?.tempMin
+        maxTemp = forecast.main?.tempMax
     }
     
 }

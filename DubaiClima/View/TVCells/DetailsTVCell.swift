@@ -31,7 +31,7 @@ class DetailsTVCell: UITableViewCell {
             self.cityNameLbl.text = vm.cityName
             self.currentTempLbl.text = Keeper.temperatureUnit == .fahrenheit ?  vm.temp?.format() : vm.temp?.celciusFormat()
             
-            self.weatherCondLbl.text = vm.weather?.weatherDescription?.rawValue
+            self.weatherCondLbl.text = vm.weather?.weatherDescription
             self.maxTempLbl.text = "H:\(Keeper.temperatureUnit == .fahrenheit ? (vm.maxTemp?.format() ?? "") : (vm.temp?.celciusFormat() ?? ""))"
             self.minTempLbl.text = "L:\(Keeper.temperatureUnit == .fahrenheit ? (vm.minTemp?.format() ?? "") : (vm.minTemp?.celciusFormat() ?? ""))"
         }

@@ -27,7 +27,7 @@ class HourForecastCVCell: UICollectionViewCell {
             guard let self = self, let vm = self.hourForecastVM else { return }
             self.timeLbl.text = vm.timeString ?? ""
             self.tempLbl.text = Keeper.temperatureUnit == .fahrenheit ?  (vm.temp?.format() ?? "") : (vm.temp?.celciusFormat() ?? "")
-            self.conditionLbl.text = vm.weather?.weatherDescription?.rawValue
+            self.conditionLbl.text = vm.weather?.weatherDescription
         }
     }
     
