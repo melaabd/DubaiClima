@@ -14,6 +14,7 @@ enum Unit: String, CaseIterable {
 
 class Keeper: NSObject {
     
+    // shared instance of userdefaults
     static let def = UserDefaults.standard
     
     ///Save Unit
@@ -22,6 +23,7 @@ class Keeper: NSObject {
         def.synchronize()
     }
     
+    // return value from userdefault with casting
     static var temperatureUnit: Unit? {
         get {
             if let value = def.value(forKey: Keys.temperatureUnitKey) as? String {
@@ -33,6 +35,7 @@ class Keeper: NSObject {
     }
     
     
+    /// clear userdefaults keys
     class func clearUserData() {
         def.removeObject(forKey: Keys.temperatureUnitKey)
         def.synchronize()

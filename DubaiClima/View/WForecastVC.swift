@@ -28,6 +28,9 @@ class WForecastVC: UIViewController {
         forecastVM?.bindingDelegate = self
         configureProgress()
         forecastVM?.loadWeatherData()
+        NotificationManager.shared.requestAuthorization { accepted in
+            print(accepted)
+        }
     }
 
 
@@ -87,7 +90,9 @@ extension WForecastVC: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return forecastVM?.detailsCellVM != nil ? 1 : 0
         default:
-            return forecastVM?.daysForeCastCellsVM?.count ?? 0
+            let noOfRows = forecastVM?.daysForeCastCellsVM?.count ?? 0
+            noOfRows == 0 ? tableView.setEmptyView("No Forecast Found") : tableView.setEmptyView()
+            return noOfRows
         }
     }
     

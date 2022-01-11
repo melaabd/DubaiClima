@@ -44,7 +44,9 @@ class DayForecastTVCell: UITableViewCell {
 extension DayForecastTVCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dayForecastVM?.hoursForecastVM?.count ?? 0
+        let noOfCells = dayForecastVM?.hoursForecastVM?.count ?? 0
+        noOfCells == 0 ? collectionView.setEmptyView("No Forecast Found") : collectionView.setEmptyView()
+        return noOfCells
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

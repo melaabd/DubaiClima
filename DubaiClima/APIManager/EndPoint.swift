@@ -24,9 +24,3 @@ enum EndPoint {
         return url
     }
 }
-
-/// Holds constants for Notification names
-enum Keys {
-    static let apiKey = "4e0109204b0b9f3037d925525549cff4"
-    static let temperatureUnitKey = "temperatureUnitKey"
-}
