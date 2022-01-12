@@ -21,7 +21,7 @@ class DBManager: NSObject {
         config = Realm.Configuration(
             // set a new version number, the version number must bigger than before
             // if you never set it, it's 0
-            schemaVersion: 1,
+            schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
 
                 if (oldSchemaVersion < 1) {

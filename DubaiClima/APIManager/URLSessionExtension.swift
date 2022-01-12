@@ -53,7 +53,12 @@ extension URLSession {
                     completionHandler(nil, NetworkResponse.noData.rawValue)
                     return
                 }
-                completionHandler(try? JSONDecoder().decode(T.self, from: data), nil)
+                do {
+                  let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                    completionHandler(decodedResponse, nil)
+                } catch let jsonError as NSError {
+                    completionHandler(nil, "JSON decode failed: \(jsonError.localizedDescription)")
+                }
             default:
                 completionHandler(nil, networkResponse?.rawValue)
             }
